@@ -110,7 +110,7 @@
   .twitchlink {
     color: white;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 1em;
   }
 </style>
 
@@ -118,7 +118,7 @@
  <div class="columns is-mobile">
     <div class="column is-2">
 
-      <div class="username-display">
+      <div class="username-display" id="dragbox">
         {{ username }}
       </div>
 
@@ -171,7 +171,7 @@
       return {
         username: username,
         password: key,
-        channels: ['#nightblue3'], // Change as desired
+        channels: ['#freecodecamp'], // Change as desired
         mymessage: '',
         messagegroup: [],
         sendmessage: '',
@@ -188,6 +188,9 @@
       this.chat()
       this.getclientimg()
       setInterval(this.getusers, 5000)
+      this.$electron.remote.getCurrentWindow().on('move', (event) => {
+        this.onmove(true)
+      })
     },
     methods: {
       sendmymessage () {
@@ -259,22 +262,30 @@
           }
         })
       },
-      expand () {
-        console.log(this.expanded)
+      onmove (move = false) {
+        console.log('on move executed...' + move)
+        let xpos = window.screenX
+        let ypos = window.screenY
         if (this.expanded) {
-          let xpos = (this.$electron.remote.getCurrentWindow().getPosition()[0])
-          let ypos = (this.$electron.remote.getCurrentWindow().getPosition()[1])
-          this.$electron.remote.getCurrentWindow().setPosition(xpos + 630, ypos)
-          this.$electron.remote.getCurrentWindow().setContentSize(120, 522)
-          this.expanded = false
+          if (!move) {
+            this.$electron.remote.getCurrentWindow().setContentSize(120, 522)
+          }
+          if ((xpos + 120) > screen.width) {
+            this.$electron.remote.getCurrentWindow().setPosition(screen.width - 120, ypos)
+          }
         } else {
           this.notifications = 0
-          let xpos = (this.$electron.remote.getCurrentWindow().getPosition()[0])
-          let ypos = (this.$electron.remote.getCurrentWindow().getPosition()[1])
-          this.$electron.remote.getCurrentWindow().setPosition(xpos - 630, ypos)
-          this.$electron.remote.getCurrentWindow().setContentSize(750, 522)
-          this.expanded = true
+          if (!move) {
+            this.$electron.remote.getCurrentWindow().setContentSize(750, 522)
+          }
+          if ((xpos + 750) > screen.width) {
+            this.$electron.remote.getCurrentWindow().setPosition(screen.width - 750, ypos)
+          }
         }
+      },
+      expand () {
+        this.expanded = !this.expanded
+        this.onmove()
       },
       pushmessage (msg) {
         var objDiv = document.getElementById('chatwin')

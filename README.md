@@ -1,6 +1,6 @@
 # OverStream
 
-> A simple 'alwaysOnTop' Twitch chat overlay for streaming
+> A simple 'alwaysOnTop' Twitch chat overlay useful for streaming
 
 ## Build Setup
 
