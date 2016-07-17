@@ -1,0 +1,21 @@
+{
+  "name": "overstream",
+  "version": "1.0.0",
+  "description": "",
+  "main": "electron.js",
+  "dependencies": {
+    "bulma": "^0.1.0",
+    "ltcm": "^1.0.5",
+    "tmi.js": "^1.1.1",
+    "twitch-irc-api": "^1.0.1",
+    "vue": "^1.0.24",
+    "vue-animated-list": "^1.0.2",
+    "vue-electron": "^1.0.0",
+    "vue-resource": "^0.7.0",
+    "vue-router": "^0.7.13",
+    "vuex": "^0.6.3"
+  },
+  "devDependencies": {},
+  "author": "JackeL <it.davidkaiser@gmail.com>",
+  "license": "ISC"
+}
