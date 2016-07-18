@@ -173,7 +173,7 @@
       return {
         username: username,
         password: key,
-        channels: ['#C9Sneaky'], // Change as desired
+        channels: ['#freecodecamp'], // Change as desired
         mymessage: '',
         messagegroup: [],
         sendmessage: '',
@@ -182,6 +182,7 @@
         notifications: 0,
         slideropened: false,
         streamtime: 0,
+        rightside: false,
         expanded: true,
         flexdirection: 'row-reverse',
         clientimg: 'http://momdadapp.com/Images/GlitchIcon_white.png' // default image if no image exists
@@ -190,11 +191,14 @@
     ready () {
       this.chat()
       this.getclientimg()
-      setInterval(this.getusers, 60000)
+      setInterval(this.getusers, 10000)
       this.$electron.remote.getCurrentWindow().on('move', (event) => {
         this.onmove(true)
         console.log(window.screenX)
-        this.flexdirection = (window.screenX + (this.$electron.remote.getCurrentWindow().getContentSize()[0] / 2) < (screen.width / 2)) ? 'row' : 'row-reverse'
+        if (this.expanded) {
+          this.flexdirection = (window.screenX + (this.$electron.remote.getCurrentWindow().getContentSize()[0] / 2) < (screen.width / 2)) ? 'row' : 'row-reverse'
+        }
+        this.rightside = (window.screenX + (this.$electron.remote.getCurrentWindow().getContentSize()[0] / 2) < (screen.width / 2)) ? 'false' : 'true'
       })
       window.onbeforeunload = (event) => {
         this.$electron.remote.getCurrentWindow().webContents.removeAllListeners()
@@ -282,32 +286,56 @@
         })
       },
       onmove (move = false) {
-        console.log('on move executed...' + move)
         let xpos = window.screenX
         let ypos = window.screenY
         if (this.expanded) {
           if (!move) {
             this.expanded = false
+              // Changes the expanded size back to non-expanded....
             this.$electron.remote.getCurrentWindow().setContentSize(120, 522)
-            // place condition here to check if on one side of the screen or the other...
+            if (this.rightside) {
+              this.flexdirection = 'row'
+              this.$electron.remote.getCurrentWindow().setPosition(xpos + 630, ypos)
+            } else {
+              this.$electron.remote.getCurrentWindow().setPosition(xpos - 630, ypos)
+            }
+            // check if off screen during non-expanded....
             if ((xpos + 120) > screen.width) {
               this.$electron.remote.getCurrentWindow().setPosition(screen.width - 120, ypos)
             }
+            if ((xpos) < 0) {
+              this.$electron.remote.getCurrentWindow().setPosition(0, ypos)
+            }
           }
+            // check if off screen during expanded....
           if ((xpos + 750) > screen.width && this.expanded) {
             this.$electron.remote.getCurrentWindow().setPosition(screen.width - 750, ypos)
           }
-        } else {
+          if ((xpos) < 0) {
+            this.$electron.remote.getCurrentWindow().setPosition(0, ypos)
+          }
+        } else { // if NOT expanded
           if (!move) {
             this.notifications = 0
             this.expanded = true
             this.$electron.remote.getCurrentWindow().setContentSize(750, 522)
+            if (this.rightside) {
+              this.flexdirection = 'row-reverse'
+            } else { // left side handler....
+              this.flexdirection = 'row'
+              if ((xpos) < 0) {
+                this.$electron.remote.getCurrentWindow().setPosition(0, ypos)
+              }
+            }
             if ((xpos + 750) > screen.width) {
               this.$electron.remote.getCurrentWindow().setPosition(screen.width - 750, ypos)
             }
           }
           if ((xpos + 120) > screen.width && this.expanded === false) {
             this.$electron.remote.getCurrentWindow().setPosition(screen.width - 120, ypos)
+          }
+          if ((xpos) < 0) {
+            this.$electron.remote.getCurrentWindow().setPosition(0, ypos)
           }
         }
       },
