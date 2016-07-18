@@ -2,6 +2,13 @@
 
 > A simple 'alwaysOnTop' Twitch chat overlay useful for streaming
 
+
+## Configuration
+
+``` bash
+# Create credentials.json from example
+app/credentials.json.example
+```
 ## Build Setup
 
 ``` bash
@@ -20,14 +27,6 @@ npm run lint
 # run webpack in production
 npm run pack
 ```
-
-## Configuration
-
-``` bash
-# Create credentials.json from example
-app/credentials.json.example
-```
-More information can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/docs/npm_scripts.html).
 
 ---
 
