@@ -23,6 +23,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     height: 522,
     width: 750,
+    center: true,
     alwaysOnTop: true,
     webPreferences: {
       webSecurity: false
