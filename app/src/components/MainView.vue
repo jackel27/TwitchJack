@@ -144,7 +144,7 @@
       <div class="chatwindow" id="chatwin">
         <div class="box">
           <div class="msg" v-for="msg in messagegroup" transition="msg" track-by="$index">
-            {{{ msg }}}
+            <span class="username" :style="{ color: msg.color }">{{ msg.username }}</span>: <span class="message"> {{{ msg.message }}} </span>
           </div>
         </div>
       </div>
@@ -161,8 +161,9 @@
 </template>
 <script>
   import Tmi from 'tmi.js'
-  let username = require('../../credentials.json').username
-  let key = require('../../credentials.json').key
+  // let username = require('../../credentials.json').username
+  let { username, key } = require('../../credentials.json')
+  // let key = require('../../credentials.json').key
   // import CurrentPage from './LandingPageView/CurrentPage'
   export default {
     components: {
@@ -172,7 +173,7 @@
       return {
         username: username,
         password: key,
-        channels: ['#Voyboy'], // Change as desired
+        channels: ['#C9Sneaky'], // Change as desired
         mymessage: '',
         messagegroup: [],
         sendmessage: '',
@@ -189,7 +190,7 @@
     ready () {
       this.chat()
       this.getclientimg()
-      setInterval(this.getusers, 5000)
+      setInterval(this.getusers, 60000)
       this.$electron.remote.getCurrentWindow().on('move', (event) => {
         this.onmove(true)
         console.log(window.screenX)
@@ -197,7 +198,7 @@
       })
       window.onbeforeunload = (event) => {
         this.$electron.remote.getCurrentWindow().webContents.removeAllListeners()
-        console.log('remove al listeners')
+        console.log('remove all listeners')
       }
     },
     methods: {
@@ -225,6 +226,7 @@
         })
       },
       chat () {
+        let tempobject = {}
         /*eslint-disable */
         var options = {
           options: {
@@ -264,10 +266,19 @@
                 newmessage = newmessage.replace(re, '<img src="http://static-cdn.jtvnw.net/emoticons/v1/' + key + '/1.0">')
               }
             }
-            this.pushmessage('<span class="username" style="color: ' + userstate.color + '">' + userstate.username + '</span>: ' + '<span class="message">' + newmessage + '</span>')
+            tempobject = {
+              'username': userstate.username,
+              'color': userstate.color,
+              'message': newmessage
+            }
           } else {
-            this.pushmessage('<span class="username" style="color: ' + userstate.color + '">' + userstate.username + '</span>: ' + '<span class="message">' + message + '</span>')
+            tempobject = {
+              'username': userstate.username,
+              'color': userstate.color,
+              'message': message
+            }
           }
+          this.pushmessage(tempobject)
         })
       },
       onmove (move = false) {
@@ -278,6 +289,7 @@
           if (!move) {
             this.expanded = false
             this.$electron.remote.getCurrentWindow().setContentSize(120, 522)
+            // place condition here to check if on one side of the screen or the other...
             if ((xpos + 120) > screen.width) {
               this.$electron.remote.getCurrentWindow().setPosition(screen.width - 120, ypos)
             }
