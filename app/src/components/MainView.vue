@@ -194,11 +194,11 @@
       setInterval(this.getusers, 10000)
       this.$electron.remote.getCurrentWindow().on('move', (event) => {
         this.onmove(true)
-        console.log(window.screenX)
+        // console.log(window.screenX)
         if (this.expanded) {
           this.flexdirection = (window.screenX + (this.$electron.remote.getCurrentWindow().getContentSize()[0] / 2) < (screen.width / 2)) ? 'row' : 'row-reverse'
         }
-        this.rightside = (window.screenX + (this.$electron.remote.getCurrentWindow().getContentSize()[0] / 2) < (screen.width / 2)) ? 'false' : 'true'
+        this.rightside = (window.screenX + (this.$electron.remote.getCurrentWindow().getContentSize()[0] / 2) < (screen.width / 2)) ? 'no' : 'yes'
       })
       window.onbeforeunload = (event) => {
         this.$electron.remote.getCurrentWindow().webContents.removeAllListeners()
@@ -292,13 +292,11 @@
           if (!move) {
             this.expanded = false
               // Changes the expanded size back to non-expanded....
-            this.$electron.remote.getCurrentWindow().setContentSize(120, 522)
-            if (this.rightside) {
-              this.flexdirection = 'row'
+            if (this.rightside === 'yes') {
               this.$electron.remote.getCurrentWindow().setPosition(xpos + 630, ypos)
-            } else {
-              this.$electron.remote.getCurrentWindow().setPosition(xpos - 630, ypos)
+              this.flexdirection = 'row'
             }
+            this.$electron.remote.getCurrentWindow().setContentSize(120, 522)
             // check if off screen during non-expanded....
             if ((xpos + 120) > screen.width) {
               this.$electron.remote.getCurrentWindow().setPosition(screen.width - 120, ypos)
@@ -319,13 +317,14 @@
             this.notifications = 0
             this.expanded = true
             this.$electron.remote.getCurrentWindow().setContentSize(750, 522)
-            if (this.rightside) {
-              this.flexdirection = 'row-reverse'
-            } else { // left side handler....
-              this.flexdirection = 'row'
+            this.flexdirection = (window.screenX + (this.$electron.remote.getCurrentWindow().getContentSize()[0] / 2) < (screen.width / 2)) ? 'row' : 'row-reverse'
+            if (this.rightside === 'no') {
+              console.log('not moving, on left side....', this.rightside)
               if ((xpos) < 0) {
                 this.$electron.remote.getCurrentWindow().setPosition(0, ypos)
               }
+            } else {
+              this.$electron.remote.getCurrentWindow().setPosition(xpos - 750, ypos)
             }
             if ((xpos + 750) > screen.width) {
               this.$electron.remote.getCurrentWindow().setPosition(screen.width - 750, ypos)
