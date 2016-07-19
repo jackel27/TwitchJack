@@ -1,6 +1,3 @@
-<style scoped>
-</style>
-
 <template>
  <div class="columns is-gapless is-mobile" v-bind:style="{ flexDirection: flexdirection }">
    <main-panel></main-panel>
