@@ -1,173 +1,21 @@
 <style scoped>
-  .chatwindow {
-    height: 300px;
-    width: 100%;
-    flex: 1;
-    display: flex;
-    overflow-y: auto;
-    margin-top: 39px;
-  }
-
-  input.input, .control {
-    width: 100%!important;
-  }
-
-  .box {
-    min-height: min-content;
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    background-color: rgba(0, 0, 0, 0.8);;
-  }
-
-  .sendmessage {
-    width: 100%;
-    display: flex;
-    /*justify-content: flex-end;*/
-  }
-
-  .msg-transition {
-    opacity: 1;
-    transition: opacity 1s ease;
-  }
-  .msg-enter {
-    opacity: 0;
-  }
-  .msg-leave {
-    opacity: 0;
-    display: none;
-    position: absolute;     /*important for removal move to work */
-  }
-  div.column.is-10 {
-    padding-left: 10px!important;
-    padding-right: 10px!important;
-  }
-
-  div.column.is-2 {
-    width: 130px!important;
-    padding-right: 0px;
-  }
-
-  .image-display {
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .username-display {
-    text-align: center;
-    overflow-wrap: break-word;
-    padding-top: 10px;
-    padding-bottom: 2px;
-    background-color: rgba(107, 116, 127, 0.8);
-    font-weight: bold;
-    color: black;
-    -webkit-app-region: drag;
-    height: 50px;
-  }
-
-  .boxes {
-    width: 120px;
-    height: 120px;
-    margin-top:2px;
-  }
-
-  .boxes.box0 {
-    background-image: url("http://placehold.it/128x128");
-    background-size: contain;
-  }
-
-  .box1 {
-    background-color: rgba(107, 116, 127, 0.5);
-    background-size: contain;
-    background-image: url("http://i.imgur.com/lvowkhh.png");
-    font-size: 2em;
-    color: red;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 33%;
-  }
-
-  .box2 {
-    background-color: rgba(68, 154, 255, 0.5);
-    font-size: 30px;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    padding-top: 33%;
-    background-position: center;
-  }
-
-  .box3 {
-    background-color: rgba(214, 233, 255, 0.5);
-    text-align: center;
-    overflow-wrap: break-word;
-    font-size: .9em;
-    padding-top: 33%;
-    /*background-image: url();*/
-  }
-
-  .twitchlink {
-    color: white;
-    font-weight: bold;
-    font-size: 1em;
-  }
 </style>
 
 <template>
  <div class="columns is-gapless is-mobile" v-bind:style="{ flexDirection: flexdirection }">
-    <div class="column is-2">
-
-      <div class="username-display" id="dragbox">
-        {{ username }}
-      </div>
-
-      <div class="boxes box0" v-bind:style="{ backgroundImage: 'url(' + clientimg + ')' }">
-      </div>
-
-      <div class="boxes box1" @click="expand">
-        {{ notifications }}
-      </div>
-
-      <div class="boxes box2">
-        {{ viewers }}
-      </div>
-
-      <div class="boxes box3">
-        <p class="twitchlink">Twitch.tv/{{ username }}</p>
-      </div>
-
-    </br>
-    </div>
-    <div class="column is-10">
-      <div class="chatwindow" id="chatwin">
-        <div class="box">
-          <div class="msg" v-for="msg in messagegroup" transition="msg" track-by="$index">
-            <span class="username" :style="{ color: msg.color }">{{ msg.username }}</span>: <span class="message"> {{{ msg.message }}} </span>
-          </div>
-        </div>
-      </div>
-      <div class="sendmessage">
-        <p class="control has-addons">
-          <input class="input" v-model="sendmessage" type="text" placeholder="Chat...">
-          <a class="button is-info" @click="sendmymessage">
-            Send
-          </a>
-        </p>
-      </div>
-    </div>
+   <main-panel></main-panel>
+   <chat-panel></chat-panel>
   </div>
 </template>
 <script>
   import Tmi from 'tmi.js'
-  // let username = require('../../credentials.json').username
   let { username, key } = require('../../credentials.json')
-  // let key = require('../../credentials.json').key
-  // import CurrentPage from './LandingPageView/CurrentPage'
+  import MainPanel from './MainPanel'
+  import ChatPanel from './ChatPanel'
   export default {
     components: {
-      // CurrentPage,
+      MainPanel,
+      ChatPanel
     },
     data () {
       return {
