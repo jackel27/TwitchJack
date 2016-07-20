@@ -1,9 +1,9 @@
 <style>
 
-  body, html {
+  /*body, html {
     background-color: transparent;
     overflow: hidden;
-  }
+  }*/
 
 
   .message {
