@@ -4,10 +4,7 @@ const electron = require('electron')
 const path = require('path')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
-const Twitch = 'twitch-sdk/twitch.js'
 
-
-let tray
 let mainWindow
 let config = {}
 
@@ -24,16 +21,15 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    height: 650,
-    width: 500,
+    transparent: true,
     center: true,
-    frame: true,
-    // alwaysOnTop: true,
+    frame: false,
+    alwaysOnTop: true,
     webPreferences: {
       webSecurity: false
-    }
-    // transparent: true,
-    // frame: false
+    },
+    height: 516,
+    width: 550
   })
 
   mainWindow.loadURL(config.url)

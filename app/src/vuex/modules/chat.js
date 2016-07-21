@@ -4,7 +4,8 @@ const state = {
   messages: [],
   viewers: 0,
   viewernames: [],
-  notifications: 0
+  notifications: 0,
+  chatisopen: false
 }
 
 const mutations = {
@@ -21,8 +22,17 @@ const mutations = {
     state.viewernames = viewernames
   },
   UPDATENOTIFICATIONS (state, notification) {
-    state.notifications = notification
+    if (!state.chat) {
+      state.notifications = state.notifications + 1
+    }
+  },
+  CLEARNOTIFICATIONS (state) {
+    state.notifications = 0
+  },
+  SETCHATSTATE (state, value) {
+    state.chat = value
   }
+
 }
 
 export default {

@@ -1,5 +1,8 @@
 <style scoped>
   @import url(https://fonts.googleapis.com/css?family=Lato:300);
+  body {
+    background-color: rgba(255,255,255,.2)!important;
+  }
   .control {
     width: 50%;
     margin: 0 auto;
@@ -11,15 +14,23 @@
 
   .logo-container, .content {
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .innerbody {
+    padding-top: 30px;
+    background-color: white;
+  }
+  .logo-container {
+    -webkit-app-region: drag;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 </style>
 <template>
-  <div>
-    <div class="logo-container">
-      <img class="logo-image" src="http://vignette4.wikia.nocookie.net/logopedia/images/2/26/Twitch_logo.svg/revision/latest?cb=20140727180649" target="_blank">
-    </div>
+  <div class="logo-container">
+    <img class="logo-image" src="http://vignette4.wikia.nocookie.net/logopedia/images/2/26/Twitch_logo.svg/revision/latest?cb=20140727180649" target="_blank">
+  </div>
+  <div class="innerbody">
     <p class="control has-icon">
       <input class="input" type="username" v-model='profile.username' placeholder="Twitch Username">
       <i class="fa fa-user"></i>
@@ -36,7 +47,7 @@
       <button class="button is-info is-pulled-right" @click='login'>
         Login
       </button>
-      <button class="button is-light is-pulled-right" @click='settings'>
+      <button class="button is-light is-pulled-right" v-link="{name: 'settings'}">
         <i class="fa fa-gear fa-2x"></i>
       </button>
     </p>
@@ -66,6 +77,11 @@
         setChannel
       }
     },
+    events: {
+      'connected' () {
+        this.isConnected()
+      }
+    },
     components: {
       // MainPanel,
     },
@@ -81,10 +97,13 @@
     },
     ready () {
       this.$electron.remote.getCurrentWindow().unmaximize()
+      this.$electron.remote.getCurrentWindow().setContentSize(530, 475)
+      let xpos = (screen.width / 2 - 265)
+      let ypos = (screen.height / 2 - 300)
+      this.$electron.remote.getCurrentWindow().setPosition(xpos, ypos)
     },
     methods: {
-      settings () {
-        this.$router.go({ name: 'settings' })
+      isConnected () {
       },
       login () {
         this.validform = true

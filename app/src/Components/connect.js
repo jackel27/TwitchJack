@@ -1,6 +1,7 @@
 import Tmi from 'tmi.js'
 import store from 'src/vuex/store.js'
 import {myrouter} from 'src/main.js'
+import Vue from 'vue'
 
 let username = ''
 let password = ''
@@ -9,6 +10,7 @@ let channel = ''
 let client = null
 let options = {}
 
+let viewerobj = {}
 // let viewercount = 0
 let tempobject = {}
 
@@ -26,7 +28,7 @@ function retrieveStore () {
     },
     identity: {
       username: username, // username
-      password: password // password
+      password: 'oauth:ldyvmfvrwffx91jygsmj9dd1zxm39l' // password
     },
     channels: ['#' + channel] // ['#' + channel]
   }
@@ -44,12 +46,13 @@ function connect () {
 
   client.addListener('connected', () => {
     console.log('Connected!')
-    window.alert('You are now Connected!')
+    // window.alert('You are now Connected!')
+    myrouter.app.$broadcast('connected')
   })
 
   client.on('disconnected', (reason) => {
     console.log(reason)
-    if(reason === 'Login unsuccessful' || reason === 'Invalid NICK.') {
+    if(reason === 'Login unsuccessful' || reason === 'Invalid NICK.' || reason === 'Connection closed.') {
       myrouter.app.$broadcast('loginfail')
     }
   })
@@ -60,6 +63,8 @@ function connect () {
 }
 
 function updateMessages (msg) {
+  myrouter.app.$broadcast('newmessage')
+  store.dispatch('UPDATENOTIFICATIONS', 1)
   if (store.state.chat.messages.length > 300) {
     store.dispatch('CLEANMESSAGES', 200)
   }
@@ -96,8 +101,35 @@ function clientOn () {
   })
 }
 
+function disconnect () {
+  myrouter.app.$broadcast('loginfail')
+  if (client) {
+    client.disconnect().then((data) => {
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+}
+
+function getviewers () {
+  Vue.http.get('https://tmi.twitch.tv/group/user/' + channel + '/chatters').then((response) => {
+    viewerobj = response.data.chatters.viewers
+  }, (error) => {
+    console.log(error)
+    viewerobj.viewers = null
+  })
+  return viewerobj
+}
+
+function saymessage (msg) {
+  client.say(channel, msg)
+}
+
 console.log(channel, username, password)
 export default {
-  connect: connect
+  connect: connect,
+  disconnect: disconnect,
+  viewers: getviewers,
+  message: saymessage
   // viewers: viewers
 }

@@ -1,9 +1,12 @@
 <style>
+html {
+  background-color: transparent!important;
+  background: rgba(0, 0, 0, 0)!important;
+  overflow: hidden!important;
+}
 
-  /*body, html {
-    background-color: transparent;
-    overflow: hidden;
-  }*/
+  html,
+  body { height: 100%; }
 
 
   .message {

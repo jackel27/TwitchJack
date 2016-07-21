@@ -12,5 +12,9 @@ export default {
   '/settings': {
     component: Vue.component('settings', require('./components/Settings')),
     name: 'settings'
+  },
+  '/connected-menu': {
+    component: Vue.component('connected-menu', require('./components/ConnectedMenu')),
+    name: 'connected-menu'
   }
 }

@@ -8,10 +8,18 @@ export const setChannel = ({ dispatch }, ch) => {
   dispatch('SETCHANNEL', ch)
 }
 
-export const setNotifications = ({ dispatch }, notifications) => {
+export const updateNotifications = ({ dispatch }, notifications) => {
   dispatch('UPDATENOTIFICATIONS', notifications)
+}
+
+export const clearNotifications = ({ dispatch }) => {
+  dispatch('CLEARNOTIFICATIONS')
 }
 
 export const setOptions = ({ dispatch }, options) => {
   dispatch('UPDATEOPTIONS', options)
+}
+
+export const setChatState = ({ dispatch }, value) => {
+  dispatch('SETCHATSTATE', value)
 }

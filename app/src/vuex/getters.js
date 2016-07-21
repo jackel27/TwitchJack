@@ -21,3 +21,7 @@ export function getOptions (state) {
 export function getNotifications (state) {
   return state.chat.notifications
 }
+
+export function getChat (state) {
+  return state.chat.messages
+}
