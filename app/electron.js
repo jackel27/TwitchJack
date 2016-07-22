@@ -21,9 +21,9 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    transparent: true,
+    transparent: false,
     center: true,
-    frame: false,
+    frame: true,
     alwaysOnTop: true,
     webPreferences: {
       webSecurity: false

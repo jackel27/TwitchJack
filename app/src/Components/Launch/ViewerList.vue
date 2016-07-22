@@ -8,7 +8,6 @@
     margin-top: 20px;
     /*width: 220px;*/
     text-align: center;
-
     overflow-y: scroll;
     margin-right: 10px;
     background-color: white;
@@ -29,7 +28,7 @@
       </div>
       <div class="viewers column" v-bind:style="{ display: showviewers }">
         <ul>
-          <li v-for="viewer in viewers">
+          <li v-for="viewer in viewers" v-filter="">
             {{ viewer }}
           </li>
         </ul>

@@ -5,7 +5,6 @@ const state = {
 }
 
 const mutations = {
-
 }
 
 export default {

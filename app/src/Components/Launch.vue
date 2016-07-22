@@ -16,7 +16,6 @@
   </div>
 </template>
 <script>
-  // import MainPanel from './MainPanel'
   import { getUsername, getUserpass, getChannel } from '../vuex/getters'
   import connect from './connect.js'
   import ChatWindow from './Launch/ChatWindow'
@@ -40,7 +39,6 @@
       }
     },
     components: {
-      // MainPanel,
       ChatWindow,
       ViewerList,
       Notification

@@ -15,15 +15,11 @@
   </div>
 </template>
 <script>
-  // import MainPanel from './MainPanel'
-  // import Twitch from './twitch.js'
   import { getNotifications } from '../../vuex/getters'
   export default {
     vuex: {
       getters: {
         getNotifications
-      },
-      actions: {
       }
     },
     events: {
@@ -31,14 +27,10 @@
         this.notification()
       }
     },
-    components: {
-    },
     data () {
       return {
         notifications: this.getNotifications
       }
-    },
-    ready () {
     },
     methods: {
       notification () {

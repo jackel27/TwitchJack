@@ -66,11 +66,6 @@
   import { setUsername, setUserpass, setChannel } from '../vuex/actions'
   export default {
     vuex: {
-      // getters: {
-      //   getusername: getUsername,
-      //   getuserpass: getUserpass,
-      //   getchannel: getChannel
-      // },
       actions: {
         setUsername,
         setUserpass,
