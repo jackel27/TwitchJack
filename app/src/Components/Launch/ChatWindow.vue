@@ -22,7 +22,6 @@
   .sendmessage {
     width: 100%;
     display: flex;
-    /*justify-content: flex-end;*/
   }
 
   .msg-transition {
@@ -37,15 +36,6 @@
     display: none;
     position: absolute;     /*important for removal move to work */
   }
-  div.column.is-12 {
-    padding-left: 10px!important;
-    padding-right: 10px!important;
-    padding-bottom: 0px!important;
-  }
-
-  .expandbtn {
-    text-align: center;
-  }
 
   .chatinput {
     width: 100%!important;
@@ -53,15 +43,26 @@
     color: white;
   }
   .chatmessage {
-    margin-left: 10px;
-    margin-right: 10px;
     background-color: rgba(0, 0, 0, 0.8);
     width: 100%!important;
   }
+  #button {
+    width: 100px!important;
+    height: 15px!important;
+  }
+  .columns {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px!important;
+    background-color: #393E41;
+  }
 </style>
 <template>
+<div class="columns is-mobile">
 
-<div class="column is-12" v-bind:style="{ display: showchat }">
+
+<div class="column is-10" v-bind:style="{ display: showchat }">
   <div class="chatwindow" id="chatwin">
     <div class="box">
       <div class="msg" v-for="msg in getChat" transition="msg">
@@ -70,19 +71,19 @@
     </div>
   </div>
 </div>
+<div class="column is-2" v-bind:style="{ display: showchat }">
+  <viewer-list></viewer-list>
+</div>
+</div>
 <div class="chat" v-bind:style="{ display: showchat }">
   <p class="control has-addons chatmessage">
-    <input class="input chatinput" type="text" id="clientmsg" @keyup.enter="sendmessage" v-model="message" placeholder="Message...">
+    <input class="input chatinput" tabindex="-1" type="text" id="clientmsg" @keyup.enter="sendmessage" v-model="message" placeholder="Message...">
   </p>
 </div>
-  <div class="expandbtn">
-    <button class="button is-info" id="button" @click="togglechat">Expand</button>
-  </div>
 
 </template>
 <script>
-  // import MainPanel from './MainPanel'
-  // import Twitch from './twitch.js'
+  import ViewerList from './ViewerList'
   /*eslint-disable */
   import connect from '../connect.js'
   import { clearNotifications, setChatState } from '../../vuex/actions'
@@ -104,7 +105,7 @@
       }
     },
     components: {
-      // MainPanel,
+      ViewerList
     },
     data () {
       return {
@@ -113,17 +114,46 @@
       }
     },
     ready () {
+      /* eslint-disable */
+      this.$electron.ipcRenderer.on('chat', (event, arg) => {
+        this.togglechat()
+      })
+      this.$electron.ipcRenderer.on('home', (event, arg) => {
+        connect.disconnect()
+        this.$router.app.$broadcast('loginfail')
+      })
+      /* eslint-enable */
+      this.chatmin()
     },
     methods: {
+      chatmin () {
+        this.setChatState(false)
+        this.showchat = 'none'
+        // resize when minimized...
+        this.$electron.remote.getCurrentWindow().setContentSize(100, 10)
+        this.$electron.remote.getCurrentWindow().setPosition(1, 0)
+      },
+      chatmax () {
+        let width = screen.width
+        this.setChatState(true)
+        this.clearNotifications()
+        this.showchat = 'flex'
+        // change size and position of window when showing chat
+        this.$electron.remote.getCurrentWindow().setContentSize(width, 378)
+        this.$electron.remote.getCurrentWindow().setPosition(0, 0)
+        // set focus to chat line...
+        this.$electron.remote.getCurrentWindow().focus()
+        window.setTimeout(() => {
+          document.getElementById('clientmsg').focus()
+        }, 400)
+      },
       togglechat () {
-        console.log(this.showchat)
-        if (this.showchat === 'flex!important') {
-          this.setChatState(false)
-          this.showchat = 'none!important'
+        // close it if opened
+        if (this.showchat === 'flex') {
+          this.chatmin()
         } else {
-          this.setChatState(true)
-          this.clearNotifications()
-          this.showchat = 'flex!important'
+          this.newMessage()
+          this.chatmax()
         }
       },
       sendmessage () {

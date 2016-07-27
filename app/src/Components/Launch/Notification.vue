@@ -15,11 +15,12 @@
   </div>
 </template>
 <script>
-  import { getNotifications } from '../../vuex/getters'
+  import { getNotifications, getChannel } from '../../vuex/getters'
   export default {
     vuex: {
       getters: {
-        getNotifications
+        getNotifications,
+        getChannel
       }
     },
     events: {
@@ -29,8 +30,11 @@
     },
     data () {
       return {
-        notifications: this.getNotifications
+        notifications: this.getNotifications,
+        channel: this.getChannel
       }
+    },
+    ready () {
     },
     methods: {
       notification () {

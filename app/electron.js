@@ -4,6 +4,7 @@ const electron = require('electron')
 const path = require('path')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
+const globalShortcut = electron.globalShortcut
 
 let mainWindow
 let config = {}
@@ -21,13 +22,14 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    transparent: false,
+    transparent: true,
     center: true,
-    frame: true,
+    frame: false,
     alwaysOnTop: true,
     webPreferences: {
       webSecurity: false
     },
+    resizable: false,
     height: 516,
     width: 550
   })
@@ -50,9 +52,28 @@ function createWindow () {
 
   console.log('mainWindow opened')
 }
+app.on('ready', () => {
+
+  // Register a 'CommandOrControl+X' shortcut listener.
+  const chat = globalShortcut.register('CommandOrControl+Shift+C', () => {
+    console.log('Key Pressed!')
+      mainWindow.webContents.send('chat', 'togglechat')
+  })
+
+  // Restart Application....
+  const home = globalShortcut.register('CommandOrControl+Shift+R', () => {
+      // mainWindow.webContents.send('restart', 'Restarting application')
+      app.relaunch()
+      app.quit()
+  })
+
+  // close connection, return to home..
+  const gohome = globalShortcut.register('CommandOrControl+Shift+D', () => {
+      mainWindow.webContents.send('home', 'Restarting application')
+  })
+})
 
 app.on('ready', createWindow)
-
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()

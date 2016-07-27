@@ -16,24 +16,24 @@
           </h2>
           <label class="label">Toggle Chat</label>
           <p class="control">
-            <input class="input" type="text" placeholder="Default: CTRL + LSHIFT + C">
+            <input class="input" type="text" disabled placeholder="Default: CTRL or CMD + LSHIFT + C">
           </p>
 
-          <label class="label">Toggle Viewer List</label>
+          <!-- <label class="label">Toggle Viewer List</label>
           <p class="control">
-            <input class="input" type="text" placeholder="Default: CTRL + LSHIFT + V">
+            <input class="input" type="text" disabled placeholder="Default: N/A -- Coming soon...">
+          </p> -->
+
+          <label class="label">Disconnect and Return to Home</label>
+          <p class="control">
+            <input class="input" type="text" disabled placeholder="Default: CTRL or CMD + LSHIFT + D">
           </p>
 
-          <label class="label">Go to Home</label>
+          <label class="label">Restart Application</label>
           <p class="control">
-            <input class="input" type="text" placeholder="Default: CTRL + LSHIFT + H">
+            <input class="input" type="text" disabled placeholder="Default: CTRL or CMD + LSHIFT + R">
           </p>
-
-          <label class="label">Disconnect</label>
-          <p class="control">
-            <input class="input" type="text" placeholder="Default: CTRL + LSHIFT + D">
-          </p>
-            <button class="button is-info is-pulled-right" @click='save'>Save</button>
+            <button class="button is-info is-pulled-right" disabled @click='save'>Save</button>
         </div>
       </div>
     </section>

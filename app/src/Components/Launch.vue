@@ -8,19 +8,19 @@
 
 </style>
 <template>
-  <notification></notification>
+  <!-- <notification></notification> -->
   <chat-window></chat-window>
-  <viewer-list></viewer-list>
+  <!-- <viewer-list></viewer-list> -->
   <div>
-    <button class="button is-danger" v-link="{name: 'connected-menu'}">Menu</button>
+    <!-- <button class="button is-danger" v-link="{name: 'connected-menu'}">Menu</button> -->
   </div>
 </template>
 <script>
   import { getUsername, getUserpass, getChannel } from '../vuex/getters'
   import connect from './connect.js'
   import ChatWindow from './Launch/ChatWindow'
-  import ViewerList from './Launch/ViewerList'
-  import Notification from './Launch/Notification'
+  // import ViewerList from './Launch/ViewerList'
+  // import Notification from './Launch/Notification'
   export default {
     vuex: {
       getters: {
@@ -39,9 +39,9 @@
       }
     },
     components: {
-      ChatWindow,
-      ViewerList,
-      Notification
+      ChatWindow
+      // ViewerList,
+      // Notification
     },
     data () {
       return {
@@ -54,7 +54,8 @@
       }
       // .remote.getCurrentWindow().setMenuBarVisibility(true)
       this.$electron.remote.getCurrentWindow().frame = false
-      this.$electron.remote.getCurrentWindow().maximize()
+      // this.$electron.remote.getCurrentWindow().maximize()
+      this.$electron.remote.getCurrentWindow().setContentSize(100, 31)
     },
     methods: {
     },

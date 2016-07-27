@@ -1,3 +1,4 @@
+      /*eslint-disable */
 import Tmi from 'tmi.js'
 import store from 'src/vuex/store.js'
 import {myrouter} from 'src/main.js'
@@ -28,16 +29,16 @@ function retrieveStore () {
     },
     identity: {
       username: username, // username
-      password: 'oauth:ldyvmfvrwffx91jygsmj9dd1zxm39l' // password
+      password: password // password
     },
-    channels: ['#' + channel] // ['#' + channel]
+    channels: ['#' + channel.toLowerCase()] // ['#' + channel]
   }
 }
 
 function connect () {
   retrieveStore()
   console.log(username, password, channel)
-      /*eslint-disable */
+
   client = new Tmi.client(options)
 
   client.addListener('connectfail', () => {
@@ -47,6 +48,7 @@ function connect () {
   client.addListener('connected', () => {
     console.log('Connected!')
     // window.alert('You are now Connected!')
+    // myrouter.app.$broadcast('connected')
     myrouter.app.$broadcast('connected')
   })
 
@@ -59,7 +61,6 @@ function connect () {
 
   client.connect()
   clientOn()
-      /*eslint-enable */
 }
 
 function updateMessages (msg) {
@@ -112,7 +113,7 @@ function disconnect () {
 }
 
 function getviewers () {
-  Vue.http.get('https://tmi.twitch.tv/group/user/' + channel + '/chatters').then((response) => {
+  Vue.http.get('https://tmi.twitch.tv/group/user/' + channel.toLowerCase() + '/chatters').then((response) => {
     viewerobj = response.data.chatters.viewers
   }, (error) => {
     console.log(error)
@@ -125,7 +126,6 @@ function saymessage (msg) {
   client.say(channel, msg)
 }
 
-console.log(channel, username, password)
 export default {
   connect: connect,
   disconnect: disconnect,
