@@ -7,7 +7,7 @@ const platform = process.env.PLATFORM_TARGET || 'all'
 let config = {
   // Name of electron app
   // Will be used in production builds
-  name: 'overstream',
+  name: 'twitchjack',
 
   // Use ESLint (extends `standard`)
   // Further changes can be made in `.eslintrc.js`

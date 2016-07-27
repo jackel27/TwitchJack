@@ -1,7 +1,7 @@
 {
-  "name": "overstream",
+  "name": "twitchjack",
   "version": "0.0.0",
-  "description": "A simple chat and info overlay for streaming",
+  "description": "A simple 'alwaysOnTop' Twitch chat overlay useful for streaming. Built for those 'one' monitor folks ;)",
   "scripts": {
     "build": "node tasks/release.js",
     "build:clean": "del builds/* !.gitkeep",
@@ -16,7 +16,7 @@
     "vue:route": "node tasks/vue/route.js",
     "vuex:module": "node tasks/vuex/module.js"
   },
-  "author": "Greg Holguin <simulatedgreg@gmail.com>",
+  "author": "David Kaiser <it.davidkaiser@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.8.0",

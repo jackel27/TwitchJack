@@ -1,4 +1,4 @@
-# OverStream
+# TwitchJack
 
 > A simple 'alwaysOnTop' Twitch chat overlay useful for streaming. Built for those 'one' monitor folks ;)
 
