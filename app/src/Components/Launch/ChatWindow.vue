@@ -87,12 +87,13 @@
   /*eslint-disable */
   import connect from '../connect.js'
   import { clearNotifications, setChatState } from '../../vuex/actions'
-  import { getChat } from '../../vuex/getters'
+  import { getChat, getNotifications } from '../../vuex/getters'
     /*eslint-enable */
   export default {
     vuex: {
       getters: {
-        getChat
+        getChat,
+        getNotifications
       },
       actions: {
         clearNotifications,
@@ -102,6 +103,20 @@
     events: {
       'newmessage' () {
         this.newMessage()
+        // console.log(getNotifications)
+        for (let x = 0; x < this.systemnotifications.length; x++) {
+          this.systemnotifications[x].close()
+        }
+        this.systemnotifications = []
+        if (this.getNotifications > 0 && this.getNotifications <= 5) {
+          let myNotification = new Notification('New Message!', {
+            body: 'You Have ' + this.getNotifications + ' Unread Messages!',
+            renotify: true,
+            silent: true,
+            tag: 'NewMessage'
+          })
+          this.systemnotifications.push(myNotification)
+        }
       }
     },
     components: {
@@ -109,6 +124,7 @@
     },
     data () {
       return {
+        systemnotifications: [],
         showchat: 'none',
         message: ''
       }
@@ -134,6 +150,7 @@
         this.$electron.remote.getCurrentWindow().setPosition(1, 0)
       },
       chatmax () {
+        this.clearNotifications()
         let width = screen.width
         this.setChatState(true)
         this.clearNotifications()

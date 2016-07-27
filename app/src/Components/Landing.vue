@@ -32,7 +32,7 @@
   </div>
   <div class="innerbody">
     <p class="control has-icon">
-      <input class="input" type="username" v-model='profile.username' placeholder="Twitch Username">
+      <input class="input" type="username" v-model='profile.username' placeholder="Your Twitch Username">
       <i class="fa fa-user"></i>
     </p>
     <p class="control has-icon">
@@ -40,7 +40,7 @@
       <i class="fa fa-lock"></i>
     </p>
     <p class="control has-icon">
-      <input class="input" type="text" v-model='profile.channel' placeholder="Channel ID eg: 'freecodecamp' ">
+      <input class="input" type="text" v-model='profile.channel' placeholder="Channel ID eg: 'jackel_27' ">
       <i class="fa fa-hashtag"></i>
     </p>
     <p class="control">
@@ -52,7 +52,8 @@
       </button>
     </p>
     <div class="content">
-      <blockquote>Don't have an OAuth? pick one up <a>here</a> </blockquote>
+      <blockquote>Don't have an OAuth? pick one up at www.twitchapps.com/tmi/
+ </blockquote>
     </div>
     <p class="control has-icon">
 

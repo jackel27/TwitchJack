@@ -1,13 +1,22 @@
 # OverStream
 
-> A simple 'alwaysOnTop' Twitch chat overlay useful for streaming
+> A simple 'alwaysOnTop' Twitch chat overlay useful for streaming. Built for those 'one' monitor folks ;)
 
-
-## Configuration
-
+## HotKeys
 ``` bash
-# Create credentials.json from example
-app/credentials.json.example
+# Toggle Chat
+CTRLorCMD + LSHIFT + C
+
+# Disconnect and return to main
+CTRLorCMD + LSHIFT + D
+
+# Restart Application
+CTRLorCMD + LSHIFT + R
+```
+## Configuration
+``` bash
+# You need your Twitch OAuth Token. Grab it from here.
+www.twitchapps.com/tmi/
 ```
 ## Build Setup
 

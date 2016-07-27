@@ -19,11 +19,6 @@
             <input class="input" type="text" disabled placeholder="Default: CTRL or CMD + LSHIFT + C">
           </p>
 
-          <!-- <label class="label">Toggle Viewer List</label>
-          <p class="control">
-            <input class="input" type="text" disabled placeholder="Default: N/A -- Coming soon...">
-          </p> -->
-
           <label class="label">Disconnect and Return to Home</label>
           <p class="control">
             <input class="input" type="text" disabled placeholder="Default: CTRL or CMD + LSHIFT + D">
@@ -43,8 +38,6 @@
   </div>
 </template>
 <script>
-  // import MainPanel from './MainPanel'
-  // import Twitch from './twitch.js'
   import { getOptions } from '../vuex/getters'
   import { setOptions } from '../vuex/actions'
   export default {
@@ -55,9 +48,6 @@
       actions: {
         setOptions
       }
-    },
-    components: {
-      // MainPanel,
     },
     data () {
       return {

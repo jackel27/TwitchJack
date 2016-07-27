@@ -1,8 +1,9 @@
-      /*eslint-disable */
-import Tmi from 'tmi.js'
-import store from 'src/vuex/store.js'
+
 import {myrouter} from 'src/main.js'
+import store from 'src/vuex/store.js'
+import Tmi from 'tmi.js'
 import Vue from 'vue'
+// import App from 'app'
 
 let username = ''
 let password = ''
@@ -29,7 +30,7 @@ function retrieveStore () {
     },
     identity: {
       username: username, // username
-      password: password // password
+      password: password
     },
     channels: ['#' + channel.toLowerCase()] // ['#' + channel]
   }
@@ -38,8 +39,9 @@ function retrieveStore () {
 function connect () {
   retrieveStore()
   console.log(username, password, channel)
-
+ /* eslint-disable */
   client = new Tmi.client(options)
+   /* eslint-enable */
 
   client.addListener('connectfail', () => {
     console.log('connectfail')
@@ -47,14 +49,12 @@ function connect () {
 
   client.addListener('connected', () => {
     console.log('Connected!')
-    // window.alert('You are now Connected!')
-    // myrouter.app.$broadcast('connected')
     myrouter.app.$broadcast('connected')
   })
 
   client.on('disconnected', (reason) => {
     console.log(reason)
-    if(reason === 'Login unsuccessful' || reason === 'Invalid NICK.' || reason === 'Connection closed.') {
+    if (reason === 'Login unsuccessful' || reason === 'Invalid NICK.' || reason === 'Connection closed.') {
       myrouter.app.$broadcast('loginfail')
     }
   })
@@ -71,7 +71,6 @@ function updateMessages (msg) {
   }
   store.dispatch('UPDATEMESSAGES', msg)
 }
-// asdf
 function clientOn () {
   client.on('chat', (channel, userstate, message, self) => {
     function getEmoteName (start, end) {
@@ -131,5 +130,4 @@ export default {
   disconnect: disconnect,
   viewers: getviewers,
   message: saymessage
-  // viewers: viewers
 }
