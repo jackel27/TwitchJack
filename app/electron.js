@@ -69,6 +69,12 @@ app.on('ready', () => {
   const gohome = globalShortcut.register('CommandOrControl+Shift+D', () => {
       mainWindow.webContents.send('home', 'Restarting application')
   })
+
+  // quit Application....
+  const quit = globalShortcut.register('CommandOrControl+Shift+Q', () => {
+      app.quit()
+  })
+
 })
 
 app.on('ready', createWindow)

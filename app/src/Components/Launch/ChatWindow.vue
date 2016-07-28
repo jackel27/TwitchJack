@@ -59,28 +59,27 @@
   }
 </style>
 <template>
-<div class="columns is-mobile">
+  <div class="columns is-mobile">
 
 
-<div class="column is-10" v-bind:style="{ display: showchat }">
-  <div class="chatwindow" id="chatwin">
-    <div class="box">
-      <div class="msg" v-for="msg in getChat" transition="msg">
-        <span class="username" :style="{ color: msg.color }">{{ msg.username }}</span>: <span class="message"> {{{ msg.message }}} </span>
+  <div class="column is-10" v-bind:style="{ display: showchat }">
+    <div class="chatwindow" id="chatwin">
+      <div class="box">
+        <div class="msg" v-for="msg in getChat" transition="msg">
+          <span class="username" :style="{ color: msg.color }">{{ msg.username }}</span>: <span class="message"> {{{ msg.message }}} </span>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="column is-2" v-bind:style="{ display: showchat }">
-  <viewer-list></viewer-list>
-</div>
-</div>
-<div class="chat" v-bind:style="{ display: showchat }">
-  <p class="control has-addons chatmessage">
-    <input class="input chatinput" tabindex="-1" type="text" id="clientmsg" @keyup.enter="sendmessage" v-model="message" placeholder="Message...">
-  </p>
-</div>
-
+  <div class="column is-2" v-bind:style="{ display: showchat }">
+    <viewer-list></viewer-list>
+  </div>
+  </div>
+  <div class="chat" v-bind:style="{ display: showchat }">
+    <p class="control has-addons chatmessage">
+      <input class="input chatinput" tabindex="-1" type="text" id="clientmsg" @keyup.enter="sendmessage" v-model="message" placeholder="Message...">
+    </p>
+  </div>
 </template>
 <script>
   import ViewerList from './ViewerList'

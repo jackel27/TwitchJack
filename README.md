@@ -2,25 +2,18 @@
 
 > A simple 'alwaysOnTop' Twitch chat overlay useful for streaming. Built for those 'one' monitor folks ;)
 
-## HotKeys
-``` bash
-# Toggle Chat
-CTRLorCMD + LSHIFT + C
+## Getting Started
 
-# Disconnect and return to main
-CTRLorCMD + LSHIFT + D
 
-# Restart Application
-CTRLorCMD + LSHIFT + R
-```
-## Configuration
+You need your Twitch OAuth Token. Grab it from here:
+<a>www.twitchapps.com/tmi/</a>
 ``` bash
-# You need your Twitch OAuth Token. Grab it from here.
-www.twitchapps.com/tmi/
-```
-## Build Setup
+# clone the repo
+git clone https://github.com/jackel27/TwitchJack.git
 
-``` bash
+# navigate to root
+cd twitchjack
+
 # install dependencies
 npm install
 
@@ -28,13 +21,27 @@ npm install
 npm run dev
 
 # build electron app for production
-npm run build
+npm run build (For Linux, OSX, WIN)
+npm run build:win32 (For Windows..)
 
-# lint all JS/Vue component files in `app/src`
-npm run lint
+```
 
-# run webpack in production
-npm run pack
+## HotKeys
+
+Custom Hotkey Configuration Coming soon... These are the current defaults:
+
+``` bash
+# Toggle Chat
+CTRLorCMD + LSHIFT + C
+
+# Disconnect
+CTRLorCMD + LSHIFT + D
+
+# Restart Application (In case of any bugs you may encounter...)
+CTRLorCMD + LSHIFT + R
+
+# Quit Application
+CTRLorCMD + LSHIFT + Q
 ```
 
 ---

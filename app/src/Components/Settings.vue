@@ -24,10 +24,16 @@
             <input class="input" type="text" disabled placeholder="Default: CTRL or CMD + LSHIFT + D">
           </p>
 
-          <label class="label">Restart Application</label>
+          <label class="label">Restart</label>
           <p class="control">
             <input class="input" type="text" disabled placeholder="Default: CTRL or CMD + LSHIFT + R">
           </p>
+
+          <label class="label">Quit</label>
+          <p class="control">
+            <input class="input" type="text" disabled placeholder="Default: CTRL or CMD + LSHIFT + Q">
+          </p>
+
             <button class="button is-info is-pulled-right" disabled @click='save'>Save</button>
         </div>
       </div>
