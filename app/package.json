@@ -7,7 +7,7 @@
     "bulma": "^0.1.0",
     "font-awesome": "^4.6.3",
     "ltcm": "^1.0.5",
-    "tmi.js": "^1.1.1",
+    "tmi.js": "git+https://github.com/jackel27/tmi.js.git",
     "vue": "^1.0.24",
     "vue-animated-list": "^1.0.2",
     "vue-electron": "^1.0.0",
