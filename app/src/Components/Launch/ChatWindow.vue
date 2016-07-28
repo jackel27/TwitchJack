@@ -103,14 +103,14 @@
     events: {
       'newmessage' () {
         this.newMessage()
-        // console.log(getNotifications)
+        // console.log(get)
         for (let x = 0; x < this.systemnotifications.length; x++) {
           this.systemnotifications[x].close()
         }
-        this.systemnotifications = []
-        if (this.getNotifications > 0 && this.getNotifications <= 5) {
-          let myNotification = new Notification('New Message!', {
-            body: 'You Have ' + this.getNotifications + ' Unread Messages!',
+        // this.systemnotifications = []
+        if (this.getNotifications > 0 && this.getNotifications <= 10) {
+          let myNotification = new Notification(this.getNotifications + ' Unread Messages!', {
+            body: ' ',
             renotify: true,
             silent: true,
             tag: 'NewMessage'

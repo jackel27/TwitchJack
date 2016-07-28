@@ -5,15 +5,6 @@ const path = require('path')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const globalShortcut = electron.globalShortcut
-const Menu = electron.Menu
-const Tray = electron.Tray
-
-let tray = null
-app.on('ready', () => {
-  tray = new Tray('./App/icons/twitch.ico')
-  tray.setToolTip('StreamJack')
-})
-
 let mainWindow
 let config = {}
 

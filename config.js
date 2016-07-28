@@ -11,7 +11,7 @@ let config = {
 
   // Use ESLint (extends `standard`)
   // Further changes can be made in `.eslintrc.js`
-  eslint: false,
+  eslint: true,
 
   // webpack-dev-server port
   port: 9080,
@@ -21,7 +21,7 @@ let config = {
   building: {
     'app-version': pkg.version,
     arch: 'x64',
-    asar: true,
+    asar: false,
     dir: path.join(__dirname, 'app'),
     icon: path.join(__dirname, 'app/icons/icon'),
     ignore: /node_modules|src|main.ejs|icons/,

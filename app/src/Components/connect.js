@@ -1,5 +1,5 @@
 
-import {myrouter} from 'src/main.js'
+import {myrouter} from 'src/routes.js'
 import store from 'src/vuex/store.js'
 import Tmi from 'tmi.js'
 import Vue from 'vue'

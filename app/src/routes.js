@@ -1,48 +1,28 @@
-// import Vue from 'vue'
+import Vue from 'vue'
+import Router from 'vue-router'
+import App from './App'
 
-export default {
+Vue.use(Router)
+const router = new Router()
 
+router.map({
   '/': {
-    name: 'landing',
-    component: (resolve) => {
-      require('./components/Landing', resolve)
-    }
+    component: Vue.component('landing', require('./components/Landing')),
+    name: 'landing'
   },
-
   '/connect': {
-    name: 'launch',
-    component: (resolve) => {
-      require('./components/Launch', resolve)
-    }
+    component: Vue.component('launch', require('./components/Launch')),
+    name: 'launch'
   },
-
   '/settings': {
-    name: 'settings',
-    component: (resolve) => {
-      require('./components/Settings', resolve)
-    }
+    component: Vue.component('settings', require('./components/Settings')),
+    name: 'settings'
   },
-
   '/connected-menu': {
-    name: 'connected-menu',
-    component: (resolve) => {
-      require('./components/connected-menu', resolve)
-    }
+    component: Vue.component('connected-menu', require('./components/ConnectedMenu')),
+    name: 'connected-menu'
   }
-}
-// '/': {
-//   component: Vue.component('landing', require('./components/Landing')),
-//   name: 'landing'
-// },
-// '/connect': {
-//   component: Vue.component('launch', require('./components/Launch')),
-//   name: 'launch'
-// },
-// '/settings': {
-//   component: Vue.component('settings', require('./components/Settings')),
-//   name: 'settings'
-// },
-// '/connected-menu': {
-//   component: Vue.component('connected-menu', require('./components/ConnectedMenu')),
-//   name: 'connected-menu'
-// }
+})
+
+router.start(App, 'app')
+export const myrouter = router

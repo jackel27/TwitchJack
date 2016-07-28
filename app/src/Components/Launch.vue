@@ -45,6 +45,14 @@
       }
       this.$electron.remote.getCurrentWindow().frame = false
       this.$electron.remote.getCurrentWindow().setContentSize(100, 31)
+      /* eslint-disable */
+      let myNotification = new Notification('Connected!', {
+        body: 'Use CommandOrControl+LSHIFT+C to toggle chat',
+        renotify: true,
+        silent: true,
+        tag: 'NewMessage'
+      })
+      /* eslint-enable */
     },
     methods: {
     },
