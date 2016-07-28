@@ -4,8 +4,9 @@
     list-style-position: inside;
   }
   .viewers {
-    height: 275px;
+    height: 243px;
     margin-top: 20px;
+    padding-top: 10px;
     text-align: center;
     overflow-y: scroll;
     margin-right: 10px;
@@ -24,14 +25,28 @@
     margin: 0 auto!important;
   }
 
+  .channelname {
+    color: coral;
+    font-size: 1.4em;
+  }
+
+  .viewerlength {
+    color: darkorange;
+  }
+
+  .rightcol {
+    padding-bottom: 0!important;
+  }
+
 </style>
 <template>
 
-  <div class="column">
-    <div class="viewerqty is-pulled-left">
+  <div class="column rightcol">
+    <div class="has-text-centered channelname">
       #{{ channel.toUpperCase() }}
     </div>
-    <div class="viewerqty is-pulled-right">
+
+    <div class="has-text-centered viewerlength">
       Viewers: {{ viewers.length }}
     </div>
     <div class="viewers column">

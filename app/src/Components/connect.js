@@ -3,7 +3,6 @@ import {myrouter} from 'src/routes.js'
 import store from 'src/vuex/store.js'
 import Tmi from 'tmi.js'
 import Vue from 'vue'
-// import App from 'app'
 
 let username = ''
 let password = ''

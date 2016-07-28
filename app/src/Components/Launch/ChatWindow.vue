@@ -145,10 +145,12 @@
         this.setChatState(false)
         this.showchat = 'none'
         // resize when minimized...
-        this.$electron.remote.getCurrentWindow().setContentSize(100, 10)
+        this.$electron.remote.getCurrentWindow().setContentSize(0, 0)
         this.$electron.remote.getCurrentWindow().setPosition(1, 0)
+        this.$electron.remote.getCurrentWindow().minimize()
       },
       chatmax () {
+        this.$electron.remote.getCurrentWindow().restore()
         this.clearNotifications()
         let width = screen.width
         this.setChatState(true)

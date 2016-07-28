@@ -56,7 +56,6 @@
  </blockquote>
     </div>
     <p class="control has-icon">
-
     </p>
   </div>
 </template>
