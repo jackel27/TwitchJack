@@ -1,6 +1,6 @@
 {
   "name": "twitchjack",
-  "version": "1.0.1",
+  "version": "0.1.0-alpha",
   "description": "A simple 'alwaysOnTop' Twitch chat overlay useful for streaming. Built for those 'one' monitor folks ;)",
   "scripts": {
     "build": "node tasks/release.js",
