@@ -28,7 +28,7 @@
 </style>
 <template>
   <div class="logo-container">
-    <img class="logo-image" src="http://vignette4.wikia.nocookie.net/logopedia/images/2/26/Twitch_logo.svg/revision/latest?cb=20140727180649" target="_blank">
+    <img class="logo-image" src="Assets/logo_twitch_jack.png" target="_blank">
   </div>
   <div class="innerbody">
     <p class="control has-icon">
@@ -64,6 +64,7 @@
   // import Twitch from './twitch.js'
   // import { getUsername, getUserpass, getChannel } from '../vuex/getters'
   import { setUsername, setUserpass, setChannel } from '../vuex/actions'
+  // const path = require('path')
   export default {
     vuex: {
       actions: {
@@ -82,6 +83,7 @@
     },
     data () {
       return {
+        mainlogo: './Assets/twitchjacklogo.png',
         profile: {
           username: '',
           password: '',

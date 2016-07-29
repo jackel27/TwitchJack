@@ -16,22 +16,22 @@
           </h2>
           <label class="label">Toggle Chat</label>
           <p class="control">
-            <input class="input" type="text" disabled placeholder="Default: CTRL or CMD + LSHIFT + C">
+            <input class="input" v-on:keydown="keycapture" v-on:keyup="capturedone" id="chatkey" type="text" v-model="chathotkeyinput" value="{{ chathotkey }}" placeholder="Default: CTRL or CMD + LSHIFT + C">
           </p>
 
           <label class="label">Disconnect and Return to Home</label>
           <p class="control">
-            <input class="input" type="text" disabled placeholder="Default: CTRL or CMD + LSHIFT + D">
+            <input class="input" type="text" v-model="disco" placeholder="Default: CTRL or CMD + LSHIFT + D">
           </p>
 
           <label class="label">Restart</label>
           <p class="control">
-            <input class="input" type="text" disabled placeholder="Default: CTRL or CMD + LSHIFT + R">
+            <input class="input" type="text" v-model="restart" placeholder="Default: CTRL or CMD + LSHIFT + R">
           </p>
 
           <label class="label">Quit</label>
           <p class="control">
-            <input class="input" type="text" disabled placeholder="Default: CTRL or CMD + LSHIFT + Q">
+            <input class="input" type="text" v-model="quit" placeholder="Default: CTRL or CMD + LSHIFT + Q">
           </p>
 
             <button class="button is-info is-pulled-right" disabled @click='save'>Save</button>
@@ -57,12 +57,28 @@
     },
     data () {
       return {
+        temp: [],
+        chathotkeyinput: '',
+        chathotkey: '',
+        disco: '',
+        quit: '',
+        restart: ''
       }
     },
     ready () {
       console.log(this.getOptions)
     },
     methods: {
+      keycapture (e) {
+        let temp = this.temp
+        console.log(e.key)
+        temp.push(e.key)
+      },
+      capturedone () {
+        let temp = this.temp
+        this.togglechat = temp.join('+')
+        this.temp = []
+      },
       save () {
         console.log('SAVED!')
       }

@@ -84,6 +84,10 @@ let config = {
   },
   target: 'electron-renderer',
   vue: {
+    // added html path resolve
+    // html: {
+    //   root: path.resolve(__dirname, './icons')
+    // },
     autoprefixer: {
       browsers: ['last 2 Chrome versions']
     },

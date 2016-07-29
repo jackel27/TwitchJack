@@ -1,5 +1,38 @@
 <style scoped>
   @import url(https://fonts.googleapis.com/css?family=Lato:300);
+  scrollbar {
+    width: 15px;
+    height: 15px;
+  }
+  scrollbar-button {
+    width: 0px;
+    height: 0px;
+  }
+  scrollbar-thumb {
+    background: #e1e1e1;
+    border: 0px none #ffffff;
+    border-radius: 17px;
+  }
+  scrollbar-thumb:hover {
+    background: #ffffff;
+  }
+  scrollbar-thumb:active {
+    background: #000000;
+  }
+  scrollbar-track {
+    background: #2b2928;
+    border: 0px none #ffffff;
+    border-radius: 42px;
+  }
+  scrollbar-track:hover {
+    background: #666666;
+  }
+  scrollbar-track:active {
+    background: #c1bfbf;
+  }
+  scrollbar-corner {
+    background: transparent;
+  }
 
   .chatwindow {
     height: 300px;
@@ -25,6 +58,7 @@
   }
 
   .msg-transition {
+    z-index: 10;
     opacity: 1;
     transition: opacity 1s ease;
   }
@@ -57,23 +91,36 @@
     margin-bottom: 0px!important;
     background-color: #393E41;
   }
+
+  .bgimage {
+    position: fixed;
+    margin-left: 25%!important;
+    margin-top: 22px;
+    filter: opacity(.2);
+  }
+
+
 </style>
 <template>
   <div class="columns is-mobile">
 
-
-  <div class="column is-10" v-bind:style="{ display: showchat }">
-    <div class="chatwindow" id="chatwin">
-      <div class="box">
-        <div class="msg" v-for="msg in getChat" transition="msg">
-          <span class="username" :style="{ color: msg.color }">{{ msg.username }}</span>: <span class="message"> {{{ msg.message }}} </span>
+    <div class="column is-10" v-bind:style="{ display: showchat }">
+      <div class="chatwindow" id="chatwin">
+        <div class="bgimage">
+          <img src="../Assets/twitchjacklogo.png" alt="" />
+        </div>
+        <div class="box">
+          <div class="msg" v-for="msg in getChat" transition="msg">
+            <span class="username" :style="{ color: msg.color }">{{ msg.username }}</span>: <span class="message"> {{{ msg.message }}} </span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="column is-2" v-bind:style="{ display: showchat }">
-    <viewer-list></viewer-list>
-  </div>
+
+    <div class="column is-2" v-bind:style="{ display: showchat }">
+      <viewer-list></viewer-list>
+    </div>
+
   </div>
   <div class="chat" v-bind:style="{ display: showchat }">
     <p class="control has-addons chatmessage">
