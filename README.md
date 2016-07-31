@@ -10,10 +10,12 @@
 
 ### Screenshots
 
-Landing Page
+#### Landing Page
+
 ![alt text](https://github.com/jackel27/TwitchJack/blob/master/git%20images/screenshot1.png?raw=true Landing Page)
 
-Chat Console Slider (CTRLorCMD + LSHIFT + C)
+#### Chat Console Slider (CTRLorCMD + LSHIFT + C)
+
 ![alt text](https://github.com/jackel27/TwitchJack/blob/master/git%20images/screenshot2.png?raw=true Chat Window)
 
 
