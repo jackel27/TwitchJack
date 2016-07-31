@@ -1,14 +1,27 @@
-# TwitchJack
 
-> A simple 'alwaysOnTop' Twitch chat overlay useful for streaming. Built for those 'one' monitor folks ;)
+![alt text](https://github.com/jackel27/TwitchJack/blob/master/app/src/Components/Assets/logo_twitch_jack.png?raw=true logo)
+
+> A simple 'alwaysOnTop' Twitch chat overlay useful for streaming. Inspired when I ended up having only one monitor.
+
+## Releases
+
+### [Check out the Releases here!](https://github.com/jackel27/TwitchJack/releases)
+
+
+### Screenshots
+
+Landing Page
+![alt text](https://github.com/jackel27/TwitchJack/blob/master/git%20images/screenshot1.png?raw=true Landing Page)
+
+Chat Console Slider (CTRLorCMD + LSHIFT + C)
+![alt text](https://github.com/jackel27/TwitchJack/blob/master/git%20images/screenshot2.png?raw=true Chat Window)
+
 
 ## Getting Started
 
+If you don't want to clone, install, or build and just want to use the app, download the latest release from [here](https://github.com/jackel27/TwitchJack/releases). Either or, you will need your Twitch OAuth Token. Grab it from <a>www.twitchapps.com/tmi/</a>
 
-You need your Twitch OAuth Token. Grab it from here:
-<a>www.twitchapps.com/tmi/</a>
 
-[Don't want to build? Check out the Releases here!](https://github.com/jackel27/TwitchJack/releases)
 
 ``` bash
 # clone the repo
