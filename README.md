@@ -7,6 +7,9 @@
 
 You need your Twitch OAuth Token. Grab it from here:
 <a>www.twitchapps.com/tmi/</a>
+
+[Don't want to build? Check out the Releases here!](https://github.com/jackel27/TwitchJack/releases)
+
 ``` bash
 # clone the repo
 git clone https://github.com/jackel27/TwitchJack.git
