@@ -10,11 +10,13 @@
   .logo-image {
     width: 400px;
     height: auto;
+    -webkit-user-select: none;
   }
 
   .logo-container, .content {
     text-align: center;
-    padding-top: 50px;
+    margin-top: 32px;
+    -webkit-user-select: none;
     padding-bottom: 50px;
   }
   .innerbody {
@@ -25,8 +27,36 @@
     -webkit-app-region: drag;
     background-color: rgba(0, 0, 0, 0.5);
   }
+  .exit-container {
+    display: flex;
+    position: absolute;
+    width: 100%!important;
+    top: 0!important;
+    padding: 0!important;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .fa-remove {
+    display: flex;
+    position: absolute;
+    right: 0!important;
+    padding: 0!important;
+    margin: 0!important;
+    top: -5px;
+    z-index: 9999;
+    cursor: pointer;
+    color: rgba(160, 143, 243, 0.2 );
+
+  }
+
 </style>
 <template>
+
+  <span class="exit-container icon is-medium">
+    <i class="fa fa-remove" @click="exit"></i>
+  </span>
+
+
+
   <div class="logo-container">
     <img class="logo-image" src="Assets/logo_twitch_jack.png" target="_blank">
   </div>
@@ -100,6 +130,9 @@
       this.$electron.remote.getCurrentWindow().setPosition(xpos, ypos)
     },
     methods: {
+      exit () {
+        this.$electron.remote.app.quit()
+      },
       isConnected () {
       },
       login () {
