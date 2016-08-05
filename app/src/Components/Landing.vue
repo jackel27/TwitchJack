@@ -25,6 +25,7 @@
   }
   .logo-container {
     -webkit-app-region: drag;
+    cursor: move;
     background-color: rgba(0, 0, 0, 0.5);
   }
   .exit-container {
