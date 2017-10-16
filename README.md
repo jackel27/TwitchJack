@@ -1,5 +1,5 @@
 
-![alt text](https://github.com/jackel27/TwitchJack/blob/master/app/src/Components/Assets/logo_twitch_jack.png?raw=true "logo")
+![alt text](https://github.com/jackel27/TwitchJack/blob/master/app/src/renderer/components/Assets/logo_twitch_jack.png?raw=true "logo")
 
 > A simple 'alwaysOnTop' Twitch chat overlay useful for streaming. Inspired when I ended up having only one monitor.
 
