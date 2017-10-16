@@ -1,5 +1,5 @@
 
-![alt text](https://github.com/jackel27/TwitchJack/blob/master/app/src/Components/Assets/logo_twitch_jack.png?raw=true logo)
+![alt text](https://github.com/jackel27/TwitchJack/blob/master/app/src/Components/Assets/logo_twitch_jack.png?raw=true "logo")
 
 > A simple 'alwaysOnTop' Twitch chat overlay useful for streaming. Inspired when I ended up having only one monitor.
 
@@ -12,11 +12,11 @@
 
 #### Landing Page
 
-![alt text](https://github.com/jackel27/TwitchJack/blob/master/git%20images/screenshot1.png?raw=true Landing Page)
+![alt text](https://github.com/jackel27/TwitchJack/blob/master/git%20images/screenshot1.png?raw=true "Landing Page")
 
 #### Chat Console Slider (CTRLorCMD + LSHIFT + C)
 
-![alt text](https://github.com/jackel27/TwitchJack/blob/master/git%20images/screenshot2.png?raw=true Chat Window)
+![alt text](https://github.com/jackel27/TwitchJack/blob/master/git%20images/screenshot2.png?raw=true "Chat Window")
 
 
 ## Getting Started
